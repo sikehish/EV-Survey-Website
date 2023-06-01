@@ -131,8 +131,8 @@ const Form = () => {
         </button>
       </div>
       <div className='my-5 text-center'>
-      <p className="bg-red-600 text-red-100">{err}</p>
-      {succ && <p className="bg-green-600 text-green-100">Vehicle added to DB!</p>}
+      <p className="bg-red-600 text-red-100 mx-5">{err}</p>
+      {succ && <p className="bg-green-600 text-green-100 mx-5">Vehicle added to DB!</p>}
       </div>
     </form>
   );
