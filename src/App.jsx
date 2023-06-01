@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import {db, auth, timestamp} from './firebase/config.js'
-import { getFirestore, collection, getDocs, setDoc, doc } from 'firebase/firestore';
+import { getFirestore, collection, getDocs, setDoc, doc, getDoc } from 'firebase/firestore';
 
 
 
 const Form = () => {
   const [number, setNumber] = useState('');
   const [model, setModel] = useState('');
-  const [radioValue, setRadioValue] = useState('');
+  const [radioValue, setRadioValue] = useState('EV 2 wheeler');
   const [err, setErr]= useState(null)
   const [succ, setSucc]= useState(null)
 
@@ -37,7 +37,14 @@ const Form = () => {
       }
 
       if(!(model.trim())) throw new Error("Enter the model name");
+
       
+      const docRef = doc(db, "EV", number);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        throw new Error("Number already exists");
+      } 
       const data = {
         numberPlate: number,
         vehicle: radioValue,
@@ -103,8 +110,8 @@ const Form = () => {
             type="radio"
             className="form-radio"
             name="radioOption"
-            value="option1"
-            checked={radioValue === 'option1'}
+            value="EV 2 wheeler"
+            checked={radioValue === 'EV 2 wheeler'}
             onChange={handleRadioChange}
           />
           <span className="ml-2">EV 2 wheeler</span>
@@ -114,8 +121,8 @@ const Form = () => {
             type="radio"
             className="form-radio"
             name="radioOption"
-            value="option2"
-            checked={radioValue === 'option2'}
+            value="EV car"
+            checked={radioValue === 'EV car'}
             onChange={handleRadioChange}
           />
           <span className="ml-2">EV car</span>
