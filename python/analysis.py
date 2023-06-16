@@ -10,6 +10,7 @@ model_counts = df["Model"].value_counts()
 type_counts = df["Vehicle"].value_counts()
 misc_counts=model_counts["Miscellaneous"]
 ev_2w=type_counts["EV 2 Wheeler"]
+ice_2w=1734
 total_count=len(df)
 
 plt.pie(model_counts, labels=model_counts.index, autopct="%1.1f%%")
@@ -25,8 +26,20 @@ plt.show()
 values = [misc_counts, total_count]  
 labels = ['Low-speed variants', 'High-speed variants']  
 
-plt.pie(values, labels=labels)
-plt.title('Vehicle categroization based on speeds')
+plt.pie(values, labels=labels, autopct="%1.1f%%")
+plt.title('Vehicle categorization based on speeds')
 plt.axis('equal')
 plt.show()
+
+values = [ev_2w, ice_2w]  
+labels = ['EV 2-Wheelers','ICE 2-Wheelers']  
+
+print(values)
+
+plt.pie(values, labels=labels, autopct="%1.1f%%")
+plt.title('EV vs ICE 2 Wheelers')
+plt.axis('equal')
+plt.show()
+
+
 
