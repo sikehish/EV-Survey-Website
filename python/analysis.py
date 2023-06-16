@@ -9,6 +9,7 @@ df = pd.read_csv("env.csv")
 model_counts = df["Model"].value_counts()
 type_counts = df["Vehicle"].value_counts()
 misc_counts=model_counts["Miscellaneous"]
+ev_2w=type_counts["EV 2 Wheeler"]
 total_count=len(df)
 
 plt.pie(model_counts, labels=model_counts.index, autopct="%1.1f%%")
