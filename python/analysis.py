@@ -8,10 +8,13 @@ df = pd.read_csv("env.csv")
 
 model_counts = df["Model"].value_counts()
 type_counts = df["Vehicle"].value_counts()
-misc_counts=model_counts["Miscellaneous"]
-ev_2w=type_counts["EV 2 Wheeler"]
-ice_2w=1734
-total_count=len(df)
+misc_counts = model_counts["Miscellaneous"]
+ev_2w = type_counts["EV 2 Wheeler"]
+ice_2w = 1734
+total_count = len(df)
+
+print(model_counts)
+print(misc_counts, ev_2w)
 
 plt.pie(model_counts, labels=model_counts.index, autopct="%1.1f%%")
 plt.title("Vehicle Models")
@@ -23,23 +26,22 @@ plt.title("Vehicle Type")
 plt.axis("equal")
 plt.show()
 
-values = [misc_counts, total_count]  
-labels = ['Low-speed variants', 'High-speed variants']  
+values = [misc_counts, total_count - misc_counts]
+labels = ["Low-speed variants", "High-speed variants"]
+print(misc_counts, total_count - misc_counts)
+
 
 plt.pie(values, labels=labels, autopct="%1.1f%%")
-plt.title('Vehicle categorization based on speeds')
-plt.axis('equal')
+plt.title("Vehicle categorization based on speeds")
+plt.axis("equal")
 plt.show()
 
-values = [ev_2w, ice_2w]  
-labels = ['EV 2-Wheelers','ICE 2-Wheelers']  
+values = [ev_2w, ice_2w]
+labels = ["EV 2-Wheelers", "ICE 2-Wheelers"]
 
 print(values)
 
 plt.pie(values, labels=labels, autopct="%1.1f%%")
-plt.title('EV vs ICE 2 Wheelers')
-plt.axis('equal')
+plt.title("EV vs ICE 2 Wheelers")
+plt.axis("equal")
 plt.show()
-
-
-
